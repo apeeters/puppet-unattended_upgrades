@@ -10,6 +10,8 @@ class unattended_upgrades::params {
   $default_age                  = { 'min'                  => 2, 'max'       => 0, }
   $default_upgradeable_packages = { 'download_only'        => 0, 'debdelta'  => 1, }
 
+  # prior to puppet 3.5.0, defined couldn't test if a variable was defined
+  # strict variables wasn't added until 3.5.0, so this should be fine.
   if ! $::settings::strict_variables {
     $xfacts = {
       'lsbdistid'           => $::lsbdistid,
