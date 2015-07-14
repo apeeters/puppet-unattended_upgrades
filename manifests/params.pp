@@ -16,17 +16,17 @@ class unattended_upgrades::params {
       'lsbdistcodename'     => $::lsbdistcodename,
     }
   } else {
-  # Strict variables facts lookup compatibility
-  $xfacts = {
-    'lsbdistid' => defined('$lsbdistid') ? {
-      true    => $::lsbdistid,
-      default => undef,
-    },
-    'lsbdistcodename' => defined('$lsbdistcodename') ? {
-      true    => $::lsbdistcodename,
-      default => undef,
-    },
-  }
+    # Strict variables facts lookup compatibility
+    $xfacts = {
+      'lsbdistid' => defined('$lsbdistid') ? {
+        true    => $::lsbdistid,
+        default => undef,
+      },
+      'lsbdistcodename' => defined('$lsbdistcodename') ? {
+        true    => $::lsbdistcodename,
+        default => undef,
+      },
+    }
   }
 
   case $xfacts['lsbdistid'] {
