@@ -10,6 +10,12 @@ class unattended_upgrades::params {
   $default_age                  = { 'min'                  => 2, 'max'       => 0, }
   $default_upgradeable_packages = { 'download_only'        => 0, 'debdelta'  => 1, }
 
+  if ! $::settings::strict_variables {
+    $xfacts = {
+      'lsbdistid'           => $::lsbdistid,
+      'lsbdistcodename'     => $::lsbdistcodename,
+    }
+  } else {
   # Strict variables facts lookup compatibility
   $xfacts = {
     'lsbdistid' => defined('$lsbdistid') ? {
@@ -20,6 +26,7 @@ class unattended_upgrades::params {
       true    => $::lsbdistcodename,
       default => undef,
     },
+  }
   }
 
   case $xfacts['lsbdistid'] {
